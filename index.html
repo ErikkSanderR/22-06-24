@@ -40,9 +40,7 @@
     <script type="text/babel">
         const txtNome = React.createRef();
         const txtSobrenome = React.createRef();
-        const txtDiaNascimento = React.createRef();
-        const txtMesNascimento = React.createRef();
-        const txtAnoNascimento = React.createRef();
+        const txtDataNascimento = React.createRef();
         const txtEmail = React.createRef();
         const txtWhatsapp = React.createRef();
         const txtEndereco = React.createRef();
@@ -51,6 +49,8 @@
         const txtCEP = React.createRef();
         const txtCidade = React.createRef();
         const txtEstado = React.createRef();
+        const txtCarro = React.createRef();
+        const txtSexo = React.createRef();
         const txtCPF = React.createRef();
         const txtRG = React.createRef();
         const txtNacionalidade = React.createRef();
@@ -60,9 +60,7 @@
 
         const lblNome = React.createRef();
         const lblSobrenome = React.createRef();
-        const lblDiaNascimento = React.createRef();
-        const lblMesNascimento = React.createRef();
-        const lblAnoNascimento = React.createRef();
+        const lblDataNascimento = React.createRef();
         const lblEmail = React.createRef();
         const lblWhatsapp = React.createRef();
         const lblEndereco = React.createRef();
@@ -71,6 +69,8 @@
         const lblCEP = React.createRef();
         const lblCidade = React.createRef();
         const lblEstado = React.createRef();
+        const lblCarro = React.createRef();
+        const lblSexo = React.createRef();
         const lblCPF = React.createRef();
         const lblRG = React.createRef();
         const lblNacionalidade = React.createRef();
@@ -90,9 +90,7 @@
             var formData = {
                 txtNome: $("#txtNome").val(),
                 txtSobrenome: $("#txtSobrenome").val(),
-                txtDiaNascimento: $("#txtDiaNascimento").val(),
-                txtMesNascimento: $("#txtMesNascimento").val(),
-                txtAnoNascimento: $("#txtAnoNascimento").val(),
+                txtDataNascimento: $("#txtDiaNascimento").val(),
                 txtEmail: $("#txtEmail").val(),
                 txtWhatsapp: $("#txtWhatsapp").val(),
                 txtEndereco: $("#txtEndereco").val(),
@@ -101,6 +99,8 @@
                 txtCEP: $("#txtCEP").val(),
                 txtCidade: $("#txtCidade").val(),
                 txtEstado: $("#txtEstado").val(),
+                txtCarro: $("#txtCarro").val(),
+                txtSexo: $("#txtSexo").val(),
                 txtCPF: $("#txtCPF").val(),
                 txtRG: $("#txtRG").val(),
                 txtNacionalidade: $("#txtNacionalidade").val(),
@@ -116,14 +116,14 @@
                 dataType: "json",
                 encode: true,
             })
-            .done(function (data) {
-                divNotificacao.current.innerText = data.message;
-                $("#divNotificacao").removeClass("collapse");
-            })
-            .fail(function (data) {
-                divNotificacao.current.innerText = data.message;
-                $("#divNotificacao").removeClass("collapse");
-            });
+                .done(function (data) {
+                    divNotificacao.current.innerText = data.message;
+                    $("#divNotificacao").removeClass("collapse");
+                })
+                .fail(function (data) {
+                    divNotificacao.current.innerText = data.message;
+                    $("#divNotificacao").removeClass("collapse");
+                });
 
             event.preventDefault();
         }
@@ -134,9 +134,7 @@
             let camposParaValidar = [
                 txtNome,
                 txtSobrenome,
-                txtDiaNascimento,
-                txtMesNascimento,
-                txtAnoNascimento,
+                txtDataNascimento,
                 txtEmail,
                 txtWhatsapp,
                 txtEndereco,
@@ -145,6 +143,8 @@
                 txtCEP,
                 txtCidade,
                 txtEstado,
+                txtCarro,
+                txtSexo,
                 txtCPF,
                 txtRG,
                 txtNacionalidade,
@@ -162,7 +162,7 @@
 
             if (camposNaoPreenchidos.length > 0) {
                 console.log("Ops! Foram encontrados " + camposNaoPreenchidos.length + " campos não preenchidos, quais sejam abaixo: ");
-                camposNaoPreenchidos.forEach(function(entry) { console.log(entry) });
+                camposNaoPreenchidos.forEach(function (entry) { console.log(entry) });
                 console.log("Favor preencher os campos acima para continuar com o cadastro.");
                 $("#frmCadastrar").submit(function (event) { return false });
             } else {
@@ -192,33 +192,13 @@
                 className={"form-control"}
             />
         );
-        const txt_DiaNascimento = (
+        const txt_DataNascimento = (
             <input
                 type={"text"}
-                id={"txtDiaNascimento"}
-                name={"txtDiaNascimento"}
-                key={"txtDiaNascimento"}
-                ref={txtDiaNascimento}
-                className={"form-control"}
-            />
-        );
-        const txt_MesNascimento = (
-            <input
-                type={"text"}
-                id={"txtMesNascimento"}
-                name={"txtMesNascimento"}
-                key={"txtMesNascimento"}
-                ref={txtMesNascimento}
-                className={"form-control"}
-            />
-        );
-        const txt_AnoNascimento = (
-            <input
-                type={"text"}
-                id={"txtAnoNascimento"}
-                name={"txtAnoNascimento"}
-                key={"txtAnoNascimento"}
-                ref={txtAnoNascimento}
+                id={"txtDataNascimento"}
+                name={"txtDataNascimento"}
+                key={"txtDataNascimento"}
+                ref={txtDataNascimento}
                 className={"form-control"}
             />
         );
@@ -302,6 +282,26 @@
                 className={"form-control"}
             />
         );
+        const txt_Carro = (
+            <input
+                type={"text"}
+                id={"txtCarro"}
+                name={"txtCarro"}
+                key={"txtCarro"}
+                ref={txtCarro}
+                className={"form-control"}
+            />
+        );
+        const txt_Sexo = (
+            <input
+                type={"text"}
+                id={"txtSexo"}
+                name={"txtSexo"}
+                key={"txtSexo"}
+                ref={txtSexo}
+                className={"form-control"}
+            />
+        );
         const txt_CPF = (
             <input
                 type={"text"}
@@ -381,33 +381,17 @@
                 className={"input-group-text"}
             >Sobrenome</label>
         );
-        const lbl_DiaNascimento = (
+
+        const lbl_DataNascimento = (
             <label
-                id={"lblDiaNascimento"}
-                name={"lblDiaNascimento"}
-                key={"lblDiaNascimento"}
-                ref={lblDiaNascimento}
+                id={"lbl_DataNascimento"}
+                name={"lbl_DataNascimento"}
+                key={"lbl_DataNascimento"}
+                ref={lbl_DataNascimento}
                 className={"input-group-text"}
-            >Dia Nascimento</label>
+            >Data de Nascimento</label>
         );
-        const lbl_MesNascimento = (
-            <label
-                id={"lblMesNascimento"}
-                name={"lblMesNascimento"}
-                key={"lblMesNascimento"}
-                ref={lblMesNascimento}
-                className={"input-group-text"}
-            >Mês Nascimento</label>
-        );
-        const lbl_AnoNascimento = (
-            <label
-                id={"lblAnoNascimento"}
-                name={"lblAnoNascimento"}
-                key={"lblAnoNascimento"}
-                ref={lblAnoNascimento}
-                className={"input-group-text"}
-            >Ano Nascimento</label>
-        );
+
         const lbl_Email = (
             <label
                 id={"lblEmail"}
@@ -480,6 +464,24 @@
                 className={"input-group-text"}
             >Estado</label>
         );
+        const lbl_Carro = (
+            <label
+                id={"lblCarro"}
+                name={"lblCarro"}
+                key={"lblCarro"}
+                ref={lblCarro}
+                className={"input-group-text"}
+            >Carro</label>
+        );
+        const lbl_Sexo = (
+            <label
+                id={"lblSexo"}
+                name={"lblSexo"}
+                key={"lblSexo"}
+                ref={lblSexo}
+                className={"input-group-text"}
+            >Sexo</label>
+        );
         const lbl_CPF = (
             <label
                 id={"lblCPF"}
@@ -543,7 +545,7 @@
                     key={"btnCadastrar"}
                     ref={btnCadastrar}
                     onClick={validarCampos}
-                >Cadastrar</button>
+                >Validar Dados</button>
             );
         }
 
@@ -566,7 +568,7 @@
         }
 
         function getNewInputGroup(spanLabel, inputObj) {
-            let idTemp = "div_input_group_Nome_" + Math.random(); 
+            let idTemp = "div_input_group_Nome_" + Math.random();
             return (
                 <div
                     className={"input-group input-group-lg"}
@@ -581,8 +583,8 @@
 
         const Div_Notificacao = () => {
             return (
-                <div 
-                    className= {"input-group collapse border-dark form-control justify-content-center"}
+                <div
+                    className={"input-group collapse border-dark form-control justify-content-center"}
                     id={"divNotificacao"}
                     key={"divNotificacao"}
                     ref={divNotificacao}
@@ -593,9 +595,7 @@
         const formulario = [
             getNewInputGroup(lbl_Nome, txt_Nome),
             getNewInputGroup(lbl_Sobrenome, txt_Sobrenome),
-            getNewInputGroup(lbl_DiaNascimento, txt_DiaNascimento),
-            getNewInputGroup(lbl_MesNascimento, txt_MesNascimento),
-            getNewInputGroup(lbl_AnoNascimento, txt_AnoNascimento),
+            getNewInputGroup(lbl_DataNascimento, txt_DataNascimento),
             getNewInputGroup(lbl_Email, txt_Email),
             getNewInputGroup(lbl_Whatsapp, txt_Whatsapp),
             getNewInputGroup(lbl_Endereco, txt_Endereco),
@@ -604,6 +604,8 @@
             getNewInputGroup(lbl_CEP, txt_CEP),
             getNewInputGroup(lbl_Cidade, txt_Cidade),
             getNewInputGroup(lbl_Estado, txt_Estado),
+            getNewInputGroup(lbl_Carro, txt_Carro),
+            getNewInputGroup(lbl_Sexo, txt_Sexo),
             getNewInputGroup(lbl_CPF, txt_CPF),
             getNewInputGroup(lbl_RG, txt_RG),
             getNewInputGroup(lbl_Nacionalidade, txt_Nacionalidade),
